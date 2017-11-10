@@ -1,8 +1,9 @@
-if (isServer) then {
+if (isServer) then 
+{
 private ["_CHgroupArray","_LVgroupArray","_PAgroupArray","_CHGroups","_AVehGroups","_LVehGroups","_PApatrols"];
 
 _JIPmkr=(_this select 0);
-_spawnMkr=(_this select 1);
+_spawn=(_this select 1);
 _infantry=(_this select 2);
 _PApatrols=_infantry select 0;
 _PAgroupSize=_infantry select 1;
@@ -43,7 +44,7 @@ _basSettings=(_this select 7);
 	if (isnil "_eosMarkers") then {_eosMarkers=[];};
 		_eosMarkers set [count _eosMarkers,_x];
 		server setvariable ["EOSmarkers",_eosMarkers,true];
-		null = [_x,_spawnMkr,[_PApatrols,_PAgroupArray],[_LVehGroups,_LVgroupArray],[_AVehGroups],[_CHGroups,_CHgroupArray],_settings,_basSettings] execVM "scripts\eos\core\b_core.sqf";
+		null = [_x,_spawn,[_PApatrols,_PAgroupArray],[_LVehGroups,_LVgroupArray],[_AVehGroups],[_CHGroups,_CHgroupArray],_settings,_basSettings] execVM "scripts\eos\core\b_core.sqf";
 }foreach _JIPmkr;
 
 };

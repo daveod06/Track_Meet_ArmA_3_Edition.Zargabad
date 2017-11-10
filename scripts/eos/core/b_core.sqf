@@ -2,7 +2,7 @@ if (!isServer) exitWith {};
 private ["_fGroup","_cargoType","_vehType","_CHside","_mkrAgl","_initialLaunch","_pause","_eosZone","_hints","_waves","_aGroup","_side","_actCond","_enemyFaction","_mAH","_mAN","_distance","_grp","_cGroup","_bGroup","_CHType","_time","_timeout","_faction"];
 
 _mkr=(_this select 0);_mPos=markerpos(_this select 0);_mkrX=getMarkerSize _mkr select 0;_mkrY=getMarkerSize _mkr select 1;_mkrAgl=markerDir _mkr;
-_spawn=(_this select 1);_spawnPos=markerpos(_spawn); // type Array, expected String on wave 2 spawn
+_spawn=(_this select 1);_spawnMkr=(_spawn select 0);_spawnRandomDir=(_spawn select 1);_spawnPos=markerpos _spawnMkr;
 _infantry=(_this select 2);_PApatrols=_infantry select 0;_PAgroupSize=_infantry select 1;
 _LVeh=(_this select 3);_LVehGroups=_LVeh select 0;_LVgroupSize=_LVeh select 1;
 _AVeh=(_this select 4);_AVehGroups=_AVeh select 0;
@@ -20,7 +20,6 @@ _initialLaunch= if (count _this > 8) then {_this select 8} else {false};
 
 _Placement=(_mkrX + 1000);
 _spawnDir=(_mPos getDir _spawnPos);
-_deg=5;
 
 	if (_mA==0) then {_mAH = 1;_mAN = 0.5;};
 	if (_mA==1) then {_mAH = 0;_mAN = 0;};
@@ -75,7 +74,7 @@ if (_pause > 0 and !_initialLaunch) then {
 // SPAWN PATROLS		
 	_aGroup=[];
 	for "_counter" from 1 to _PApatrols do {	
-						_pos = [_mPos, _Placement, _spawnDir + (random [-_deg,0,_deg])] call BIS_fnc_relPos;
+						_pos = [_mPos, _Placement, _spawnDir + (random [-_spawnRandomDir,0,_spawnRandomDir])] call BIS_fnc_relPos;
 							_grp=[_pos,_PAgroupSize,_faction,_side] call EOS_fnc_spawngroup;	
 							_aGroup set [count _aGroup,_grp];
 if (_debug) then {PLAYER SIDECHAT (format ["Spawned Patrol: %1",_counter]);0= [_mkr,_counter,"patrol",getpos (leader _grp)] call EOS_debug};
@@ -85,7 +84,7 @@ if (_debug) then {PLAYER SIDECHAT (format ["Spawned Patrol: %1",_counter]);0= [_
 	_bGrp=[];
 	for "_counter" from 1 to _LVehGroups do {
 				
-		_newpos = [_mPos, (_Placement +500), _spawnDir + (random [-_deg,0,_deg])] call BIS_fnc_relPos;
+		_newpos = [_mPos, (_Placement +500), _spawnDir + (random [-_spawnRandomDir,0,_spawnRandomDir])] call BIS_fnc_relPos;
 			if (surfaceiswater _newpos) then {_vehType=8;_cargoType=10;}else{_vehType=7;_cargoType=9;};
 			
 				_bGroup=[_newpos,_side,_faction,_vehType]call EOS_fnc_spawnvehicle;					
@@ -103,7 +102,7 @@ if (_debug) then {player sidechat format ["Light Vehicle:%1 - r%2",_counter,_LVe
 	_cGrp=[];
 	for "_counter" from 1 to _AVehGroups do {
 			
-					_newpos = [_mPos, _Placement, _spawnDir + (random [-_deg,0,_deg])] call BIS_fnc_relPos;
+					_newpos = [_mPos, _Placement, _spawnDir + (random [-_spawnRandomDir,0,_spawnRandomDir])] call BIS_fnc_relPos;
 					if (surfaceiswater _newpos) then {_vehType=8;}else{_vehType=2;};
 					_cGroup=[_newpos,_side,_faction,_vehType]call EOS_fnc_spawnvehicle;
 					
@@ -117,7 +116,7 @@ if (_debug) then {player sidechat format ["Armoured:%1 - r%2",_counter,_AVehGrou
 	for "_counter" from 1 to _CHGroups do {
 	
 	if ((_fSize select 0) > 0) then {_vehType=4}else{_vehType=3};
-				_newpos = [(markerpos _mkr), 1500, _spawnDir + (random [-_deg,0,_deg])] call BIS_fnc_relPos;	
+				_newpos = [(markerpos _mkr), 1500, _spawnDir + (random [-_spawnRandomDir,0,_spawnRandomDir])] call BIS_fnc_relPos;	
 						_fGroup=[_newpos,_side,_faction,_vehType,"fly"]call EOS_fnc_spawnvehicle;	
 						_CHside=_side;
 						_fGrp set [count _fGrp,_fGroup];
@@ -200,7 +199,7 @@ null = [_mkr,[_PApatrols,_PAgroupSize],[_PApatrols,_PAgroupSize],[_LVehGroups,_L
 					}else{
 					if (_waves >= 1) then {
 						if (_hints) then  {hint "Reinforcements inbound";};
-null = [_mkr,[_PApatrols,_PAgroupSize],[_LVehGroups,_LVgroupSize],[_AVehGroups],[_CHGroups,_fSize],_settings,[_pause,_waves,_timeout,_eosZone,_hints],true] execVM "scripts\eos\core\b_core.sqf";
+null = [_mkr,_spawn,[_PApatrols,_PAgroupSize],[_LVehGroups,_LVgroupSize],[_AVehGroups],[_CHGroups,_fSize],_settings,[_pause,_waves,_timeout,_eosZone,_hints],true] execVM "scripts\eos\core\b_core.sqf";
 						};};
 	
 waituntil {getmarkercolor _mkr == "colorblack" OR getmarkercolor _mkr == VictoryColor OR getmarkercolor _mkr == hostileColor or !triggeractivated  _bastActive};
