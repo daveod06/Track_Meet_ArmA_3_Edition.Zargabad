@@ -6,7 +6,7 @@
 []execVM "scripts\eos\OpenMe.sqf";
 
 // IED script
-//detonateBombs = false;
+detonateBombs = false;
 //iedMkr=["iedMkr0","iedMkr1","iedMkr2"];
 //[iedMkr,detonateBombs] execVM "scripts\ied.sqf";
 //[] execVM "scripts\ied.sqf";

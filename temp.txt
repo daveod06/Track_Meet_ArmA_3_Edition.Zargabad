@@ -1,0 +1,4 @@
+c130 animate ["ramp_top", 1]; c130 animate ["ramp_bottom", 1]; // down
+c130 animate ["ramp_top", 0]; c130 animate ["ramp_bottom", 0]; // up
+driver (c130) action ["engineOn",c130];
+c130 engineOn TRUE;

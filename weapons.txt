@@ -273,6 +273,57 @@ this linkItem "NVGoggles";
 
 
 
+
+
+
+comment "M240";
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "rhs_uniform_FROG01_d";
+for "_i" from 1 to 3 do {this addItemToUniform "rhsusf_mag_17Rnd_9x19_FMJ";};
+this addItemToUniform "SmokeShell";
+this addItemToUniform "rhs_mag_m67";
+this addVest "V_PlateCarrier2_rgr";
+for "_i" from 1 to 3 do {this addItemToVest "rhs_mag_m67";};
+for "_i" from 1 to 3 do {this addItemToVest "rhsusf_50Rnd_762x51";};
+this addItemToVest "rhsusf_50Rnd_762x51_m62_tracer";
+this addBackpack "B_Carryall_cbr";
+for "_i" from 1 to 4 do {this addItemToBackpack "FirstAidKit";};
+this addItemToBackpack "CUP_Javelin_M";
+for "_i" from 1 to 2 do {this addItemToBackpack "rhsusf_100Rnd_762x51";};
+this addHeadgear "rhsusf_lwh_helmet_marpatd";
+
+comment "Add weapons";
+this addWeapon "rhs_weap_m240G";
+this addPrimaryWeaponItem "optic_Hamr";
+this addWeapon "rhsusf_weap_glock17g4";
+this addWeapon "Rangefinder";
+
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "ItemRadio";
+this linkItem "ItemGPS";
+this linkItem "NVGoggles";
+
+
+
+
+
+
+
+
 comment "M24";
 
 comment "Remove existing items";
@@ -311,6 +362,108 @@ this linkItem "ItemWatch";
 this linkItem "ItemRadio";
 this linkItem "ItemGPS";
 this linkItem "NVGoggles";
+
+
+
+
+
+
+
+comment "M107";
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "rhs_uniform_FROG01_d";
+this addItemToUniform "SmokeShell";
+this addItemToUniform "SmokeShellRed";
+for "_i" from 1 to 2 do {this addItemToUniform "rhs_mag_m67";};
+for "_i" from 1 to 2 do {this addItemToUniform "rhsusf_mag_17Rnd_9x19_FMJ";};
+this addVest "V_PlateCarrier2_rgr";
+for "_i" from 1 to 4 do {this addItemToVest "FirstAidKit";};
+this addItemToVest "SmokeShellRed";
+for "_i" from 1 to 2 do {this addItemToVest "rhsusf_mag_10Rnd_STD_50BMG_M33";};
+this addItemToVest "rhsusf_mag_17Rnd_9x19_FMJ";
+this addItemToVest "rhs_mag_m67";
+this addBackpack "B_Carryall_cbr";
+for "_i" from 1 to 7 do {this addItemToBackpack "rhsusf_mag_10Rnd_STD_50BMG_mk211";};
+this addHeadgear "rhsusf_lwh_helmet_marpatd";
+
+comment "Add weapons";
+this addWeapon "rhs_weap_M107";
+this addPrimaryWeaponItem "optic_Nightstalker";
+this addWeapon "rhsusf_weap_glock17g4";
+this addWeapon "Rangefinder";
+
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "ItemRadio";
+this linkItem "ItemGPS";
+this linkItem "NVGoggles";
+
+
+
+
+
+
+comment "M4";
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "rhs_uniform_FROG01_d";
+for "_i" from 1 to 4 do {this addItemToUniform "rhs_mag_30Rnd_556x45_M855_Stanag";};
+this addVest "V_PlateCarrier2_rgr";
+for "_i" from 1 to 4 do {this addItemToVest "FirstAidKit";};
+for "_i" from 1 to 2 do {this addItemToVest "rhsusf_mag_17Rnd_9x19_FMJ";};
+for "_i" from 1 to 4 do {this addItemToVest "rhs_mag_m67";};
+this addItemToVest "SmokeShellRed";
+this addItemToVest "SmokeShell";
+for "_i" from 1 to 5 do {this addItemToVest "rhs_mag_30Rnd_556x45_M855_Stanag";};
+this addBackpack "B_Bergen_mcamo_F";
+this addItemToBackpack "rhs_fgm148_magazine_AT";
+this addHeadgear "rhsusf_lwh_helmet_marpatd";
+
+comment "Add weapons";
+this addWeapon "rhs_weap_m4a1_carryhandle";
+this addPrimaryWeaponItem "rhsusf_acc_nt4_black";
+this addPrimaryWeaponItem "acc_pointer_IR";
+this addPrimaryWeaponItem "optic_Aco";
+this addPrimaryWeaponItem "rhsusf_acc_grip3";
+this addWeapon "rhs_weap_fgm148";
+this addWeapon "rhsusf_weap_glock17g4";
+this addWeapon "Rangefinder";
+
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "ItemRadio";
+this linkItem "ItemGPS";
+this linkItem "NVGoggles";
+
+comment "Set identity";
+this setFace "AfricanHead_03";
+this setSpeaker "male02gre";
+
 
 
 
@@ -369,41 +522,3 @@ this addItemToBackpack "MineDetector";
 
 
 
-
-comment "Exported from Arsenal by SaberSnack";
-
-comment "Remove existing items";
-removeAllWeapons this;
-removeAllItems this;
-removeAllAssignedItems this;
-removeUniform this;
-removeVest this;
-removeBackpack this;
-removeHeadgear this;
-removeGoggles this;
-
-comment "Add containers";
-this forceAddUniform "U_B_CombatUniform_mcam";
-this addVest "V_PlateCarrier1_rgr";
-this addItemToVest "rhsusf_mag_10Rnd_STD_50BMG_M33";
-this addItemToVest "rhsusf_mag_10Rnd_STD_50BMG_mk211";
-this addBackpack "B_AssaultPack_cbr";
-this addHeadgear "H_ShemagOpen_khk";
-
-comment "Add weapons";
-this addWeapon "rhs_weap_M107";
-this addWeapon "rhs_weap_pb_6p9";
-this addHandgunItem "rhs_acc_6p9_suppressor";
-this addWeapon "Binocular";
-
-comment "Add items";
-this linkItem "ItemMap";
-this linkItem "ItemCompass";
-this linkItem "ItemWatch";
-this linkItem "ItemRadio";
-this linkItem "ItemGPS";
-
-comment "Set identity";
-this setFace "PersianHead_A3_02";
-this setSpeaker "male01_ackbar";
-[this,"insignia_isc_IS"] call bis_fnc_setUnitInsignia;
